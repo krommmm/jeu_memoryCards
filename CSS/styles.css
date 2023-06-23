@@ -1,0 +1,152 @@
+/* html {
+	background: #2980b9;
+	background: -webkit-linear-gradient(to right, #ffffff, #6dd5fa, #2980b9);
+	background: linear-gradient(to right, #ffffff, #6dd5fa, #2980b9);
+	min-width: 400px;
+	text-align: center;
+} */
+
+* {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.bouton {
+	padding: 15px;
+	background-color: rgb(24, 164, 230);
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+label {
+	margin-left: 20px;
+}
+
+.film_container,
+.cartoon_container,
+.bat_container {
+	margin: 15px;
+}
+
+input {
+	cursor: pointer;
+}
+
+#jeux {
+	width: 40%;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	perspective: 1000px;
+}
+
+.card {
+	width: 9vw;
+	height: 12vw;
+	object-fit: cover;
+	margin: 5px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.black {
+	background-image: url('https://marcosmene.github.io/memoria/images/backverde.jpg');
+}
+
+h1 {
+	margin: 20px;
+}
+
+.image_card_container {
+	perspective: 1000px;
+	width: 137px;
+	height: 200px;
+	margin: 10px;
+}
+.imgCard {
+	width: 100%;
+	height: 100%;
+}
+.image-card {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: transform 0.5s;
+	display: flex;
+}
+
+.card {
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: transform 0.5s;
+	cursor: pointer;
+}
+
+.front,
+.back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+}
+
+.back {
+	transform: rotateY(180deg);
+}
+
+.flipped {
+	transform: rotateY(180deg);
+}
+@media screen and (max-width: 1570px) {
+	.image_card_container {
+		width: 7vw;
+	}
+}
+@media screen and (max-width: 1350) {
+	.image_card_container {
+		width: 7vw;
+	}
+}
+
+
+@media screen and (max-width: 1110px) {
+	#jeux {
+		width: 80%;
+	}
+
+	.image_card_container {
+		width: 15vw;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	#jeux {
+		width: 95%;
+	}
+	.imgCard {
+		width: 100%;
+		height: 100%;
+	}
+	.card {
+		height: 100%;
+		width: 100%;
+	}
+
+	.image_card_container {
+		width: 17%;
+		height: 100px;
+	}
+}
