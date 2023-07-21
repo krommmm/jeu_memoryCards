@@ -18,14 +18,23 @@ body {
 	align-items: center;
 	flex-direction: column;
 	height: 100vh;
+
+	background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
 }
 
 .bouton {
 	padding: 15px;
-	background-color: rgb(24, 164, 230);
+	background: linear-gradient(#84dafb, #0a90c1);
+	border: 1px solid #0a90c1;
 	color: white;
+	display: inline-block;
+	font-weight: 600;
 	border-radius: 5px;
 	cursor: pointer;
+}
+.bouton:hover {
+	background: linear-gradient(#f9bd05, #ef5c03) !important;
+	border: 1px solid #ef5c03 !important;
 }
 
 label {
@@ -66,6 +75,9 @@ input {
 
 h1 {
 	margin: 20px;
+	color: black;
+	font-size: 3rem;
+	font-weight: 900;
 }
 
 .image_card_container {
@@ -101,6 +113,10 @@ h1 {
 	width: 100%;
 	height: 100%;
 	backface-visibility: hidden;
+	-webkit-box-shadow: 0px 10px 13px -7px #000000,
+		5px 5px 15px 5px rgba(0, 0, 0, 0);
+	box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+	border-radius: 10px;
 }
 
 .back {
@@ -120,7 +136,6 @@ h1 {
 		width: 7vw;
 	}
 }
-
 
 @media screen and (max-width: 1110px) {
 	#jeux {

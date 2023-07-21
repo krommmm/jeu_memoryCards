@@ -19,6 +19,13 @@ var isEndGame = false;
 
 //fonction qui créer les cartes dynamiquement
 const creationCards = () => {
+	var btnReturnDiv = document.querySelector('.bouton_retour');
+	var btnReturn = document.createElement('div');
+	var btnReturnNode = document.createTextNode('Recommencer le jeu');
+	btnReturn.appendChild(btnReturnNode);
+	btnReturn.className = 'bouton envoyer';
+
+	btnReturnDiv.appendChild(btnReturn);
 	var tabNumbers = [];
 	var tabNumbersRandom = [];
 	var card;
@@ -49,7 +56,7 @@ const creationCards = () => {
 				front.className = `front  invisible ${tabNumbersRandom[i]}`;
 				back.className = `back  invisible ${tabNumbersRandom[i]}`;
 
-				front.setAttribute('src', `./images/backCard/red.png`);
+				front.setAttribute('src', `./images/backCard/cb1.jpg`);
 				back.setAttribute(
 					'src',
 					`./images/films/${tabNumbersRandom[i]}`
@@ -73,37 +80,37 @@ const creationCards = () => {
 				'pocahontas.jpg',
 				'white_snow.jpeg',
 			];
-		tabNumbers = tabNumbers.concat(tabNumbers);
-		tabNumbersRandom = shakeTabOrder(tabNumbers);
-		//creation des cartes en dynamique
-		for (let i = 0; i < tabNumbersRandom.length; i++) {
-			var imgCardContainer = document.createElement('div');
-			var imgCard = document.createElement('div');
-			var card = document.createElement('div');
-			var front = document.createElement('img');
-			var back = document.createElement('img');
+			tabNumbers = tabNumbers.concat(tabNumbers);
+			tabNumbersRandom = shakeTabOrder(tabNumbers);
+			//creation des cartes en dynamique
+			for (let i = 0; i < tabNumbersRandom.length; i++) {
+				var imgCardContainer = document.createElement('div');
+				var imgCard = document.createElement('div');
+				var card = document.createElement('div');
+				var front = document.createElement('img');
+				var back = document.createElement('img');
 
-			imgCardContainer.className = 'image_card_container';
-			imgCard.className = 'imgCard';
-			card.className = 'card ';
-			front.className = `front  invisible ${tabNumbersRandom[i]}`;
-			back.className = `back  invisible ${tabNumbersRandom[i]}`;
+				imgCardContainer.className = 'image_card_container';
+				imgCard.className = 'imgCard';
+				card.className = 'card ';
+				front.className = `front  invisible ${tabNumbersRandom[i]}`;
+				back.className = `back  invisible ${tabNumbersRandom[i]}`;
 
-			front.setAttribute('src', `./images/backCard/red.png`);
-			back.setAttribute(
-				'src',
-				`./images/cartoon/${tabNumbersRandom[i]}`
-			);
+				front.setAttribute('src', `./images/backCard/cbBart.webp`);
+				back.setAttribute(
+					'src',
+					`./images/cartoon/${tabNumbersRandom[i]}`
+				);
 
-			game.appendChild(imgCardContainer);
-			//dos de carte
-			imgCardContainer.appendChild(imgCard);
-			imgCard.appendChild(card);
-			card.appendChild(front);
-			// image derriere
-			card.appendChild(back);
-		}
-		break;
+				game.appendChild(imgCardContainer);
+				//dos de carte
+				imgCardContainer.appendChild(imgCard);
+				imgCard.appendChild(card);
+				card.appendChild(front);
+				// image derriere
+				card.appendChild(back);
+			}
+			break;
 		case 'bat':
 			tabNumbers = [
 				'abu.jpg',
@@ -114,39 +121,44 @@ const creationCards = () => {
 				'taj.jpg',
 			];
 			tabNumbers = tabNumbers.concat(tabNumbers);
-		tabNumbersRandom = shakeTabOrder(tabNumbers);
-		//creation des cartes en dynamique
-		for (let i = 0; i < tabNumbersRandom.length; i++) {
-			var imgCardContainer = document.createElement('div');
-			var imgCard = document.createElement('div');
-			var card = document.createElement('div');
-			var front = document.createElement('img');
-			var back = document.createElement('img');
+			tabNumbersRandom = shakeTabOrder(tabNumbers);
+			//creation des cartes en dynamique
+			for (let i = 0; i < tabNumbersRandom.length; i++) {
+				var imgCardContainer = document.createElement('div');
+				var imgCard = document.createElement('div');
+				var card = document.createElement('div');
+				var front = document.createElement('img');
+				var back = document.createElement('img');
 
-			imgCardContainer.className = 'image_card_container';
-			imgCard.className = 'imgCard';
-			card.className = 'card ';
-			front.className = `front  invisible ${tabNumbersRandom[i]}`;
-			back.className = `back  invisible ${tabNumbersRandom[i]}`;
+				imgCardContainer.className = 'image_card_container';
+				imgCard.className = 'imgCard';
+				card.className = 'card ';
+				front.className = `front  invisible ${tabNumbersRandom[i]}`;
+				back.className = `back  invisible ${tabNumbersRandom[i]}`;
 
-			front.setAttribute('src', `./images/backCard/red.png`);
-			back.setAttribute(
-				'src',
-				`./images/batiments/${tabNumbersRandom[i]}`
-			);
+				front.setAttribute('src', `./images/backCard/red.png`);
+				back.setAttribute(
+					'src',
+					`./images/batiments/${tabNumbersRandom[i]}`
+				);
 
-			game.appendChild(imgCardContainer);
-			//dos de carte
-			imgCardContainer.appendChild(imgCard);
-			imgCard.appendChild(card);
-			card.appendChild(front);
-			// image derriere
-			card.appendChild(back);
-		}
-		break;
-		default: console.log("error");
+				game.appendChild(imgCardContainer);
+				//dos de carte
+				imgCardContainer.appendChild(imgCard);
+				imgCard.appendChild(card);
+				card.appendChild(front);
+				// image derriere
+				card.appendChild(back);
+			}
+			break;
+		default:
+			console.log('error');
 	}
 	//cart.setAttribute('src', '');
+
+	btnReturnDiv.addEventListener("click",()=>{
+		window.location.reload();
+	});
 };
 
 //fonction qui reçoit un tab.length et qui renvoit un nb random entre 1 et tab.length
@@ -232,7 +244,10 @@ const selection = () => {
 						// 	`currentName : ${carte.firstChild.classList[2]}`
 						// );
 						//Si img 1 et img 2 sont identiques
-						if (name1 === carte.firstChild.classList[2] && cartIndex !== cartIndex2) {
+						if (
+							name1 === carte.firstChild.classList[2] &&
+							cartIndex !== cartIndex2
+						) {
 							// console.log('identiques');
 
 							// pour tous les img si une a la classe du même nom que name1 alors
@@ -282,18 +297,16 @@ const selection = () => {
 				//ici
 				var backCards = document.getElementsByClassName('back');
 				//Si callback sur tous les back cards return false
-				isEndGame=true;
+				isEndGame = true;
 				Array.from(backCards).map((elem) => {
-					
 					if (elem.classList[1] === 'invisible') {
-						isEndGame=false;
+						isEndGame = false;
 					}
 				});
-					
-						if(isEndGame){
-							window.location.reload();
-						}		
-				
+
+				if (isEndGame) {
+					window.location.reload();
+				}
 			}
 		});
 	});
