@@ -56,7 +56,7 @@ const creationCards = () => {
 				front.className = `front  invisible ${tabNumbersRandom[i]}`;
 				back.className = `back  invisible ${tabNumbersRandom[i]}`;
 
-				front.setAttribute('src', `./images/backCard/cb1.jpg`);
+				front.setAttribute('src', `./images/backCard/cbHouse.jpg`);
 				back.setAttribute(
 					'src',
 					`./images/films/${tabNumbersRandom[i]}`
