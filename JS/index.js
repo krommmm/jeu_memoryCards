@@ -1,172 +1,27 @@
-var selectedOption = '';
+var selectedOption = ''; // option selectionné parmis les différents thèmes
 var game = document.getElementById('jeux');
-var cpt = 0;
-var youCanClick = true;
-
-var paireCarteUn = '1';
-var paireCarteDeux = '2';
-
-var firstCard = null;
-var secondCard = null;
-
+var cpt = 0; // compteur de clicks
+var firstCard = null;  // sert de copie pour la 1ère carte afin de stocker sa valeur
+var secondCard = null; // sert de copie pour la 2ème carte ...
 var backCard = 'backverde.jpg';
-var imgPath = '';
+var name1 = '';  // doit contenir la class de la première image
+var isWaiting = false; // pour ne pas pouvoir cliquer sur une autre carte quand on a déjà cliqué sur 2 cartes et qu'on doit attendre
+//joueur =  isWaiting ? "doit attendre " : "peut jouer"
 
-var name1 = '';
-var isWaiting = false; // pour ne pas pouvoir cliquer sur une autre carte quand on a déjà cliquer sur 2 cartes et qu'on attend
 
 var isEndGame = false;
 
-//fonction qui créer les cartes dynamiquement
-const creationCards = () => {
-	var btnReturnDiv = document.querySelector('.bouton_retour');
-	var btnReturn = document.createElement('div');
-	var btnReturnNode = document.createTextNode('Recommencer le jeu');
-	btnReturn.appendChild(btnReturnNode);
-	btnReturn.className = 'bouton envoyer';
+//	FONCTIONS
+function creatingElements(tag, className) {
+	let newElement = document.createElement(tag);
+	newElement.className = className;
+	return newElement;
+}
 
-	btnReturnDiv.appendChild(btnReturn);
-	var tabNumbers = [];
-	var tabNumbersRandom = [];
-	var card;
-
-	switch (selectedOption) {
-		case 'film':
-			tabNumbers = [
-				'parfum.jpg',
-				'avatar.jpg',
-				'bella.png',
-				'jp.png',
-				'lotr.jpg',
-				'rrr.jpg',
-			];
-			tabNumbers = tabNumbers.concat(tabNumbers);
-			tabNumbersRandom = shakeTabOrder(tabNumbers);
-			//creation des cartes en dynamique
-			for (let i = 0; i < tabNumbersRandom.length; i++) {
-				var imgCardContainer = document.createElement('div');
-				var imgCard = document.createElement('div');
-				var card = document.createElement('div');
-				var front = document.createElement('img');
-				var back = document.createElement('img');
-
-				imgCardContainer.className = 'image_card_container';
-				imgCard.className = 'imgCard';
-				card.className = 'card ';
-				front.className = `front  invisible ${tabNumbersRandom[i]}`;
-				back.className = `back  invisible ${tabNumbersRandom[i]}`;
-
-				front.setAttribute('src', `./images/backCard/cb2.jpg`);
-				back.setAttribute(
-					'src',
-					`./images/films/${tabNumbersRandom[i]}`
-				);
-
-				game.appendChild(imgCardContainer);
-				//dos de carte
-				imgCardContainer.appendChild(imgCard);
-				imgCard.appendChild(card);
-				card.appendChild(front);
-				// image derriere
-				card.appendChild(back);
-			}
-			break;
-		case 'cartoon':
-			tabNumbers = [
-				'aladdin.webp',
-				'chihiro.webp',
-				'le_roi_lion.jpg',
-				'notre_dame.jpg',
-				'pocahontas.jpg',
-				'white_snow.jpeg',
-			];
-			tabNumbers = tabNumbers.concat(tabNumbers);
-			tabNumbersRandom = shakeTabOrder(tabNumbers);
-			//creation des cartes en dynamique
-			for (let i = 0; i < tabNumbersRandom.length; i++) {
-				var imgCardContainer = document.createElement('div');
-				var imgCard = document.createElement('div');
-				var card = document.createElement('div');
-				var front = document.createElement('img');
-				var back = document.createElement('img');
-
-				imgCardContainer.className = 'image_card_container';
-				imgCard.className = 'imgCard';
-				card.className = 'card ';
-				front.className = `front  invisible ${tabNumbersRandom[i]}`;
-				back.className = `back  invisible ${tabNumbersRandom[i]}`;
-
-				front.setAttribute('src', `./images/backCard/cbBart.webp`);
-				back.setAttribute(
-					'src',
-					`./images/cartoon/${tabNumbersRandom[i]}`
-				);
-
-				game.appendChild(imgCardContainer);
-				//dos de carte
-				imgCardContainer.appendChild(imgCard);
-				imgCard.appendChild(card);
-				card.appendChild(front);
-				// image derriere
-				card.appendChild(back);
-			}
-			break;
-		case 'bat':
-			tabNumbers = [
-				'abu.jpg',
-				'angleterre.jpg',
-				'easter.jpg',
-				'japon.jpg',
-				'allemagne.jpg',
-				'taj.jpg',
-			];
-			tabNumbers = tabNumbers.concat(tabNumbers);
-			tabNumbersRandom = shakeTabOrder(tabNumbers);
-			//creation des cartes en dynamique
-			for (let i = 0; i < tabNumbersRandom.length; i++) {
-				var imgCardContainer = document.createElement('div');
-				var imgCard = document.createElement('div');
-				var card = document.createElement('div');
-				var front = document.createElement('img');
-				var back = document.createElement('img');
-
-				imgCardContainer.className = 'image_card_container';
-				imgCard.className = 'imgCard';
-				card.className = 'card ';
-				front.className = `front  invisible ${tabNumbersRandom[i]}`;
-				back.className = `back  invisible ${tabNumbersRandom[i]}`;
-
-				front.setAttribute('src', `./images/backCard/hs.png`);
-				back.setAttribute(
-					'src',
-					`./images/batiments/${tabNumbersRandom[i]}`
-				);
-
-				game.appendChild(imgCardContainer);
-				//dos de carte
-				imgCardContainer.appendChild(imgCard);
-				imgCard.appendChild(card);
-				card.appendChild(front);
-				// image derriere
-				card.appendChild(back);
-			}
-			break;
-		default:
-			console.log('error');
-	}
-	//cart.setAttribute('src', '');
-
-	btnReturnDiv.addEventListener("click",()=>{
-		window.location.reload();
-	});
-};
-
-//fonction qui reçoit un tab.length et qui renvoit un nb random entre 1 et tab.length
 const randomNumber = (max) => {
 	return Math.floor(Math.random() * (max + 1));
 };
 
-//fonction qui reçoit un tableau et mélange l'ordre des values
 const shakeTabOrder = (numbers) => {
 	for (let i = 0; i < numbers.length; i++) {
 		let randomIndex = randomNumber(i);
@@ -177,26 +32,17 @@ const shakeTabOrder = (numbers) => {
 	return numbers;
 };
 
-const wait2Secondes = () => {
+const waitXSecondes = (sec) => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			//console.log("c'est prêt");
 			resolve();
-		}, 2000);
+		}, sec);
 	});
 };
 
-const checkEndOfGame = () => {
-	let gameChilds = game.children;
-	for (let i = 0; i < gameChilds.length; i++) {
-		if (gameChilds[i].classList.contains('invisible')) {
-			return false; // At least one card is still invisible
-		}
-	}
-	return true; // All cards are visible, end of the game
-};
-
+//	fonction qui se lance grâce au html quand on click sur un des boutons radio
 const selection = () => {
+	//on associe une condition de selection pour toutes les options des input radio
 	const options = document.getElementsByName('option');
 	Array.from(options).map((option) => {
 		if (option.checked) {
@@ -204,60 +50,60 @@ const selection = () => {
 		}
 	});
 
-	//	console.log(selectedOption);
+	//une fois l'option selectionné, cache la section "selection" et on affiche la section "jeux" pour quitter le menu et rentrer dans le jeu
 	document.getElementById('selection').style.display = 'none';
 	document.getElementById('jeux').style.display = 'flex';
 
-	creationCards();
+	//on modèlise et crééer l'apparence des cartes en fonction de selectedOption (films/cartoons/bâtiments)
+	creationCards(selectedOption);
+
+	//on selectionne toutes les cartes et on remet le compteur de clicks à 0
 	var cartes = document.querySelectorAll('.card');
 	let cpt = 0;
-
+	//pour chaque carte
 	Array.from(cartes).map((carte) => {
+		//quand on clique dessus
 		carte.addEventListener('click', async function () {
+			//si le joueur est en attente, il ne peut pas jouer
 			if (isWaiting) {
+				return;
 			} else {
-				//condition pour ne pas recliquer sur une carte déjà visible
+				// si la carte a déjà été retournée (visible), ne rien faire
 				if (carte.firstChild.classList[1] === 'visible') {
 					return;
+					//sinon la carte se retourne et le compteur est incrémenté
 				} else {
 					carte.classList.toggle('flipped');
 					cpt++;
+					// si on a cliqué sur une 1ère carte
 					if (cpt === 1) {
-						//on chope l'index pour ne pas rappuyer sur la même carte
+						//on récupère l'index pour ne pas rappuyer sur la même carte
 						cartIndex = Array.from(cartes).indexOf(carte);
-						console.log(cartIndex);
+						// on stocke la classe de la 1ère carte (qui indique le nom de la carte) pour effecter une comparaison plus tard
 						name1 = carte.firstChild.classList[2];
+						//ainsi que la première carte
 						firstCard = carte;
 					}
+						// si on a cliqué sur une 2ème carte
 					if (cpt === 2) {
+						// on récupère l'index de la 2ème carte
 						cartIndex2 = Array.from(cartes).indexOf(carte);
+						// Le joueur doit attendre
 						isWaiting = true;
+						//on stock la 2ème carte
 						secondCard = carte;
-						// 2 cartes ont été cliquées
-						//si 2 cartes identiques => class visible
-						//sinon wait2Secondes()
-						//restart à 0 => cpt=0
-						//retourner les 2
-						//attendre 2seondes  avant de pouvoir recliquer (if onTruc ?)
-						// console.log(`name1 : ${name1}`);
-						// console.log(
-						// 	`currentName : ${carte.firstChild.classList[2]}`
-						// );
-						//Si img 1 et img 2 sont identiques
+
+						// Comparaison des classes pour voir si les cartes correspondent
 						if (
+							// si les class correspondent
 							name1 === carte.firstChild.classList[2] &&
+							//et que les index sont différents alors ces 2 cartes ont la même image
 							cartIndex !== cartIndex2
 						) {
-							// console.log('identiques');
-
-							// pour tous les img si une a la classe du même nom que name1 alors
+							// Si les cartes correspondent, affichage des images
 							var backCards =
 								document.getElementsByClassName('back');
 							Array.from(backCards).map((elem) => {
-								// console.log(
-								// 	'current name : ' + elem.classList[2]
-								// );
-								// console.log('name1 : ' + name1);
 								if (elem.classList[2] === name1) {
 									elem.classList.replace(
 										'invisible',
@@ -276,25 +122,26 @@ const selection = () => {
 									);
 								}
 							});
+							// Le joueur peut à nouveau jouer
 							isWaiting = false;
 						} else {
-							// console.log('pas identiques');
-							wait2Secondes()
+							// Si les cartes ne correspondent pas, on retourne les cartes après un délai
+							waitXSecondes(2000)
 								.then(() => {
 									carte.classList.toggle('flipped');
 									firstCard.classList.toggle('flipped');
+									// on réinitialise firstCard & secondCard
 									firstCard = null;
 									secondCard = null;
 									isWaiting = false;
 								})
 								.catch((err) => console.log(err));
-						}
+						};
+						//On réinitialie le compteur
 						cpt = 0;
 					}
-
-					//si identique carte reste verso sinon launch wait2Secondes
 				}
-				//ici
+				// Vérification si le jeu est terminé
 				var backCards = document.getElementsByClassName('back');
 				//Si callback sur tous les back cards return false
 				isEndGame = true;
@@ -311,6 +158,3 @@ const selection = () => {
 		});
 	});
 };
-
-// il faut que dès que cpt = 2 ça envoie la fonction
-// et non pas quand je clique pour la troizième fois
