@@ -1,3 +1,4 @@
+//	VARIABLES GLOBALES
 var selectedOption = ''; // option selectionné parmis les différents thèmes
 var game = document.getElementById('jeux');
 var cpt = 0; // compteur de clicks
@@ -7,11 +8,9 @@ var backCard = 'backverde.jpg';
 var name1 = '';  // doit contenir la class de la première image
 var isWaiting = false; // pour ne pas pouvoir cliquer sur une autre carte quand on a déjà cliqué sur 2 cartes et qu'on doit attendre
 //joueur =  isWaiting ? "doit attendre " : "peut jouer"
-
-
 var isEndGame = false;
 
-//	FONCTIONS
+//	FONCTIONS REUTILISABLES
 function creatingElements(tag, className) {
 	let newElement = document.createElement(tag);
 	newElement.className = className;
@@ -39,6 +38,8 @@ const waitXSecondes = (sec) => {
 		}, sec);
 	});
 };
+
+//	CODE
 
 //	fonction qui se lance grâce au html quand on click sur un des boutons radio
 const selection = () => {
