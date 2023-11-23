@@ -32,6 +32,10 @@ body {
 	border-radius: 5px;
 	cursor: pointer;
 	font-family: 'Mate SC', serif;
+	transition-duration: 0.2s;
+}
+.bouton:active {
+	transform: scale(0.8);
 }
 .bouton:hover {
 	background: linear-gradient(#f9bd05, #ef5c03) !important;
@@ -46,10 +50,15 @@ label {
 .cartoon_container,
 .bat_container {
 	margin: 15px;
+	display:flex;
+
+	align-items: center;
 }
 
 input {
 	cursor: pointer;
+	width: 50px;
+	height: 50px;
 }
 
 #jeux {
@@ -93,13 +102,13 @@ label {
 
 .image_card_container {
 	perspective: 1000px;
-	width: 137px;
-	height: 200px;
+	width: 115px;
+	height: 150px;
 	margin: 10px;
 }
 .imgCard {
-	width: 100%;
-	height: 100%;
+	width: 115px;
+	height: 150px;
 }
 .image-card {
 	position: relative;
@@ -140,38 +149,40 @@ label {
 
 #congrats {
 	position: absolute;
-
 }
-.congrats_container{
+.congrats_container {
 	backdrop-filter: blur(10px);
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  left: 0;
-  overflow: auto;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 9999;
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	left: 0;
+	overflow: auto;
+	position: fixed;
+	top: 0%;
+	width: 100%;
+	z-index: 9999;
+}
+.congrats_container img {
+	margin-top: 50px;
 }
 
 .hidden {
 	display: none;
 }
 .reveal {
-	animation-duration:1s;
-	animation-name:appearsAndScale;
+	animation-duration: 1s;
+	animation-name: appearsAndScale;
 	display: inline-block;
 	animation-fill-mode: forwards;
 }
-@keyframes appearsAndScale{
-	0%{
-		opacity:0;
-		transform:scale(0);
+@keyframes appearsAndScale {
+	0% {
+		opacity: 0;
+		transform: scale(0);
 	}
-	100%{
-		opacity:1;
-		transform:scale(1);
+	100% {
+		opacity: 1;
+		transform: scale(1);
 	}
 }
 
@@ -190,6 +201,9 @@ label {
 	#jeux {
 		width: 80%;
 	}
+	#congrats {
+		width: 400px;
+	}
 
 	.image_card_container {
 		width: 15vw;
@@ -207,6 +221,9 @@ label {
 	.card {
 		height: 100%;
 		width: 100%;
+	}
+	#congrats {
+		width: 250;
 	}
 
 	.image_card_container {

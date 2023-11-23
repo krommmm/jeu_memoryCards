@@ -35,7 +35,7 @@ const creationCards = (selectedOption) => {
 				var front = creatingElements('img',`front  invisible ${tabNumbersRandom[i]}`);
 				var back = creatingElements('img',`back  invisible ${tabNumbersRandom[i]}`);
 
-				front.setAttribute('src', `./images/backCard/cb2.jpg`);
+				front.setAttribute('src', `./images/backCard/fgfg.png`);
 				back.setAttribute(
 					'src',
 					`./images/films/${tabNumbersRandom[i]}`
@@ -68,7 +68,7 @@ const creationCards = (selectedOption) => {
 				var front = creatingElements('img',`front  invisible ${tabNumbersRandom[i]}`);
 				var back = creatingElements('img',`back  invisible ${tabNumbersRandom[i]}`);
 
-				front.setAttribute('src', `./images/backCard/cbBart.webp`);
+				front.setAttribute('src', `./images/backCard/fgfg.png`);
 				back.setAttribute('src',`./images/cartoon/${tabNumbersRandom[i]}`);
 
 				game.appendChild(imgCardContainer);
@@ -98,7 +98,7 @@ const creationCards = (selectedOption) => {
 				var front = creatingElements('img',`front  invisible ${tabNumbersRandom[i]}`);
 				var back = creatingElements('img',`back  invisible ${tabNumbersRandom[i]}`);
 
-				front.setAttribute('src', `./images/backCard/hs.png`);
+				front.setAttribute('src', `./images/backCard/fgfg.png`);
 				back.setAttribute('src',`./images/batiments/${tabNumbersRandom[i]}`);
 
 				game.appendChild(imgCardContainer);
