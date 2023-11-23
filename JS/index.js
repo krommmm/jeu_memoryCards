@@ -2,13 +2,24 @@
 var selectedOption = ''; // option selectionné parmis les différents thèmes
 var game = document.getElementById('jeux');
 var cpt = 0; // compteur de clicks
-var firstCard = null;  // sert de copie pour la 1ère carte afin de stocker sa valeur
+var firstCard = null; // sert de copie pour la 1ère carte afin de stocker sa valeur
 var secondCard = null; // sert de copie pour la 2ème carte ...
 var backCard = 'backverde.jpg';
-var name1 = '';  // doit contenir la class de la première image
+var name1 = ''; // doit contenir la class de la première image
 var isWaiting = false; // pour ne pas pouvoir cliquer sur une autre carte quand on a déjà cliqué sur 2 cartes et qu'on doit attendre
 //joueur =  isWaiting ? "doit attendre " : "peut jouer"
 var isEndGame = false;
+
+const messageDeFin = async () => {
+	setTimeout(() => {
+		window.location.reload();
+	}, 4000);
+	let congrats = document.getElementById("congrats");
+	let congratsContainer = document.querySelector(".congrats_container");
+	congratsContainer.classList.remove("hidden");
+	congrats.classList.remove("hidden");
+	congrats.classList.add("reveal");
+};
 
 //	FONCTIONS REUTILISABLES
 function creatingElements(tag, className) {
@@ -85,7 +96,7 @@ const selection = () => {
 						//ainsi que la première carte
 						firstCard = carte;
 					}
-						// si on a cliqué sur une 2ème carte
+					// si on a cliqué sur une 2ème carte
 					if (cpt === 2) {
 						// on récupère l'index de la 2ème carte
 						cartIndex2 = Array.from(cartes).indexOf(carte);
@@ -137,7 +148,7 @@ const selection = () => {
 									isWaiting = false;
 								})
 								.catch((err) => console.log(err));
-						};
+						}
 						//On réinitialie le compteur
 						cpt = 0;
 					}
@@ -153,7 +164,7 @@ const selection = () => {
 				});
 
 				if (isEndGame) {
-					window.location.reload();
+					messageDeFin();
 				}
 			}
 		});
