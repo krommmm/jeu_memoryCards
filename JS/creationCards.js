@@ -4,7 +4,7 @@ const creationCards = (selectedOption) => {
 	
 	var btnReturnDiv = document.querySelector('.bouton_retour');
 	var btnReturn = document.createElement('div');
-	var btnReturnNode = document.createTextNode('Recommencer le jeu');
+	var btnReturnNode = document.createTextNode('Restart');
 	btnReturn.appendChild(btnReturnNode);
 	btnReturn.className = 'bouton envoyer';
 

@@ -34,9 +34,11 @@ body {
 	font-family: 'Mate SC', serif;
 	transition-duration: 0.2s;
 }
+
 .bouton:active {
 	transform: scale(0.8);
 }
+
 .bouton:hover {
 	background: linear-gradient(#f9bd05, #ef5c03) !important;
 	border: 1px solid #ef5c03 !important;
@@ -46,23 +48,44 @@ label {
 	margin-left: 20px;
 }
 
+
+#selection,
+#formulaire {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 .film_container,
 .cartoon_container,
 .bat_container {
 	margin: 15px;
-	display:flex;
-
+	padding: 5px;
+	display: flex;
+	border: 1px solid black;
+	border-radius: 3px;
 	align-items: center;
+	width: 195px;
+	position: relative;
 }
 
 input {
 	cursor: pointer;
-	width: 50px;
-	height: 50px;
+	width: 20px;
+	height: 20px;
+}
+
+.icons {
+	width: 30px;
+	height: 30px;
+	margin-left: 15px;
+	position: absolute;
+	right: 10px;
 }
 
 #jeux {
-	width: 40%;
+	width: 550px;
 	margin: auto;
 	display: flex;
 	flex-wrap: wrap;
@@ -70,11 +93,26 @@ input {
 	perspective: 1000px;
 }
 
+.imgCard {
+	width: 100px;
+	height: 150px;
+}
+
+
+
+.image-card {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: transform 0.5s;
+	display: flex;
+}
+
 .card {
-	width: 9vw;
-	height: 12vw;
+	width: 100px;
+	height: 150px;
 	object-fit: cover;
-	margin: 5px;
 	cursor: pointer;
 	border-radius: 5px;
 }
@@ -91,11 +129,12 @@ h1 {
 	padding: 15px;
 	border-radius: 5px;
 	background: linear-gradient(to right, #fc5c7d, #6a82fb);
-	font-family: 'Press Start 2P', cursive;
 }
+
 h2 {
 	font-family: 'Rock Salt', cursive;
 }
+
 label {
 	font-family: 'Rock Salt', cursive;
 }
@@ -104,20 +143,9 @@ label {
 	perspective: 1000px;
 	width: 115px;
 	height: 150px;
-	margin: 10px;
+	margin: 6px;
 }
-.imgCard {
-	width: 115px;
-	height: 150px;
-}
-.image-card {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	transform-style: preserve-3d;
-	transition: transform 0.5s;
-	display: flex;
-}
+
 
 .card {
 	width: 100%;
@@ -137,6 +165,7 @@ label {
 		5px 5px 15px 5px rgba(0, 0, 0, 0);
 	box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 	border-radius: 10px;
+	border: 1px solid black;
 }
 
 .back {
@@ -150,6 +179,7 @@ label {
 #congrats {
 	position: absolute;
 }
+
 .congrats_container {
 	backdrop-filter: blur(10px);
 	display: flex;
@@ -162,6 +192,11 @@ label {
 	width: 100%;
 	z-index: 9999;
 }
+
+#jeux {
+	margin-top: 30px;
+}
+
 .congrats_container img {
 	margin-top: 50px;
 }
@@ -169,72 +204,38 @@ label {
 .hidden {
 	display: none;
 }
+
 .reveal {
 	animation-duration: 1s;
 	animation-name: appearsAndScale;
 	display: inline-block;
 	animation-fill-mode: forwards;
 }
+
 @keyframes appearsAndScale {
 	0% {
 		opacity: 0;
 		transform: scale(0);
 	}
+
 	100% {
 		opacity: 1;
 		transform: scale(1);
 	}
 }
 
-@media screen and (max-width: 1570px) {
-	.image_card_container {
-		width: 7vw;
-	}
-}
-@media screen and (max-width: 1350) {
-	.image_card_container {
-		width: 7vw;
-	}
-}
-
-@media screen and (max-width: 1110px) {
-	#jeux {
-		width: 80%;
-	}
-	#congrats {
-		width: 400px;
-	}
-
-	.image_card_container {
-		width: 15vw;
-	}
-}
-
 @media screen and (max-width: 700px) {
-	#jeux {
-		width: 95%;
-	}
-	.imgCard {
-		width: 100%;
-		height: 100%;
-	}
-	.card {
-		height: 100%;
-		width: 100%;
-	}
-	#congrats {
-		width: 250;
+	body #jeux {
+		width: 300px;
 	}
 
 	.image_card_container {
-		width: 17%;
-		height: 100px;
+		width: 50px;
+		height: 75px;
 	}
-	h1 {
-		font-size: 20px;
-	}
-	#selection {
-		width: 80%;
-		margin: auto;
+
+	.imgCard {
+		width: 50px;
+		height: 75px;
 	}
 }
